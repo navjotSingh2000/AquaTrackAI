@@ -39,5 +39,7 @@ export const MATERIAL_ICON_CUPS: {
   { name: "10mp", label: "250 ml", capacity: 0.25 },
   { name: "11mp", label: "500 ml", capacity: 0.5 },
   { name: "12mp", label: "750 ml", capacity: 0.75 },
-  { name: "13mp", label: "1 L", capacity: 0.4 },
+  { name: "13mp", label: "1 L", capacity: 1 },
+  { name: "14mp", label: "1.25 L", capacity: 1.25 },
+  { name: "15mp", label: "1.5 L", capacity: 1.5 },
 ];

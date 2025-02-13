@@ -25,7 +25,7 @@ export default function Tab() {
             <Text className="text-white text-2xl font-bold">Tab Home</Text>
             <WaterIntakeDial intake={currentIntake} goal={goal} />
           </View>
-          <ScrollView horizontal>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             <View className="flex flex-row justify-center items-center gap-2">
               {MATERIAL_ICON_CUPS.map((cup) => {
                 return (
