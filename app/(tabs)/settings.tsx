@@ -1,4 +1,11 @@
-import { View, Text, TextInput, Button, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  Button,
+  ScrollView,
+  Platform,
+} from "react-native";
 import Checkbox from "expo-checkbox";
 import { Picker } from "@react-native-picker/picker";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
@@ -26,10 +33,6 @@ export default function Tab() {
             <Text className="text-3xl font-bold text-white mb-4">
               Attributes
             </Text>
-            <Button
-              title="Test"
-              onPress={() => console.log(attributes)}
-            ></Button>
             <View className="w-full max-w-md bg-gray-800 p-6 rounded-2xl shadow-lg">
               <View className="mb-4">
                 <Text className="text-lg font-medium text-gray-300 mb-1">
@@ -53,18 +56,25 @@ export default function Tab() {
                   Exercise Time (mins)
                 </Text>
                 <Picker
-                  className="w-full p-3 border border-gray-600 rounded-lg text-lg text-white"
                   selectedValue={attributes.exerciseTimeInMins}
                   onValueChange={(itemValue) =>
                     onAttributeChange(itemValue, "exerciseTimeInMins")
                   }
+                  style={{
+                    backgroundColor:
+                      Platform.OS === "android" ? "#4F46E5" : "transparent",
+                  }}
                 >
                   {EXERCISE_TIMES.map((item) => (
                     <Picker.Item
                       key={item.time}
                       label={item.label}
                       value={item.time}
-                      color="white"
+                      style={{
+                        backgroundColor:
+                          Platform.OS === "android" ? "#4F46E5" : "transparent",
+                        color: "white",
+                      }}
                     />
                   ))}
                 </Picker>
