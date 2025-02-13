@@ -18,30 +18,30 @@ export default function Tab() {
   const currentIntake = 1.5;
 
   return (
-    <SafeAreaView className="flex-1 bg-gray-900">
-      <ScrollView
-        contentContainerStyle={{ padding: 16, backgroundColor: "#111827" }}
-      >
-        <View className="justify-center items-center bg-gray-900 p-6">
-          <Text className="text-white text-2xl font-bold">Tab Home</Text>
-          <WaterIntakeDial intake={currentIntake} goal={goal} />
-        </View>
-        <ScrollView horizontal>
-          <View className="flex flex-row justify-center items-center gap-2">
-            {MATERIAL_ICON_CUPS.map((cup) => {
-              return (
-                <WaterIntakeCup
-                  key={cup.name}
-                  icon={cup.name}
-                  label={cup.label}
-                  capacity={cup.capacity}
-                  onPress={() => console.log("Pressed")}
-                />
-              );
-            })}
+    <View className="flex-1 bg-gray-900">
+      <SafeAreaView className="flex justify-center items-center">
+        <ScrollView contentContainerStyle={{ padding: 16 }}>
+          <View className="justify-center items-center p-6">
+            <Text className="text-white text-2xl font-bold">Tab Home</Text>
+            <WaterIntakeDial intake={currentIntake} goal={goal} />
           </View>
+          <ScrollView horizontal>
+            <View className="flex flex-row justify-center items-center gap-2">
+              {MATERIAL_ICON_CUPS.map((cup) => {
+                return (
+                  <WaterIntakeCup
+                    key={cup.name}
+                    icon={cup.name}
+                    label={cup.label}
+                    capacity={cup.capacity}
+                    onPress={() => console.log("Pressed")}
+                  />
+                );
+              })}
+            </View>
+          </ScrollView>
         </ScrollView>
-      </ScrollView>
-    </SafeAreaView>
+      </SafeAreaView>
+    </View>
   );
 }

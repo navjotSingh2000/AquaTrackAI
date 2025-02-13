@@ -3,7 +3,17 @@ import { Tabs } from "expo-router";
 
 export default function TabLayout() {
   return (
-    <Tabs screenOptions={{ tabBarActiveTintColor: "blue" }}>
+    <Tabs
+      screenOptions={{
+        tabBarActiveTintColor: "white",
+        tabBarStyle: {
+          backgroundColor: "#111827",
+          paddingTop: 5,
+          justifyContent: "center", // Vertically center the icons
+          alignItems: "center", // Align the items horizontally (if needed)
+        },
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
