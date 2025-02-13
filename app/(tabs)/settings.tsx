@@ -4,7 +4,7 @@ import { Picker } from "@react-native-picker/picker";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { setAttribute } from "@/redux/attributesSlice";
 import { Attributes } from "@/types/attributes";
-import { ExerciseTimes } from "@/constants/data";
+import { EXERCISE_TIMES } from "@/constants/data";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Tab() {
@@ -55,7 +55,7 @@ export default function Tab() {
                   onAttributeChange(itemValue, "exerciseTimeInMins")
                 }
               >
-                {ExerciseTimes.map((item) => (
+                {EXERCISE_TIMES.map((item) => (
                   <Picker.Item
                     key={item.time}
                     label={item.label}
