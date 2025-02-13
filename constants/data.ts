@@ -1,3 +1,5 @@
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+
 // to convert oz to liters
 export const OZ_TO_LITRES = 0.5 * 0.0295735;
 
@@ -26,4 +28,16 @@ export const EXERCISE_TIMES = [
   { time: 180, label: "3 hours" },
   { time: 210, label: "3 hours 30 mins" },
   { time: 240, label: "4 hours" },
+];
+
+export const MATERIAL_ICON_CUPS: {
+  name: keyof typeof MaterialIcons.glyphMap;
+  label: string;
+  capacity: number;
+}[] = [
+  { name: "local-drink", label: "100 ml", capacity: 0.1 },
+  { name: "10mp", label: "250 ml", capacity: 0.25 },
+  { name: "11mp", label: "500 ml", capacity: 0.5 },
+  { name: "12mp", label: "750 ml", capacity: 0.75 },
+  { name: "13mp", label: "1 L", capacity: 0.4 },
 ];
