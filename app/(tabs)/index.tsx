@@ -5,9 +5,10 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useAppSelector } from "@/redux/hooks";
 import WaterIntakeCup from "@/components/WaterIntakeCup";
 import { MATERIAL_ICON_CUPS } from "@/constants/data";
+import { RootState } from "@/redux/store";
 
 export default function Tab() {
-  const attributes = useAppSelector((state) => state.attributes);
+  const attributes = useAppSelector((state: RootState) => state.attributes);
   const goal = calculateWaterIntake(
     attributes.weight,
     "kg",
