@@ -1,5 +1,6 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import attributesReducer from "@/redux/attributesSlice";
+import logIntakeReducer from "@/redux/logIntakeSlice";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { persistReducer, persistStore } from "redux-persist";
 import {
@@ -17,9 +18,10 @@ const persistConfig = {
   storage: AsyncStorage,
 };
 
-// Combine reducers (in case you add more reducers later)
+// Combine reducers
 const rootReducer = combineReducers({
   attributes: attributesReducer,
+  logIntake: logIntakeReducer,
 });
 
 // Create persisted reducer
