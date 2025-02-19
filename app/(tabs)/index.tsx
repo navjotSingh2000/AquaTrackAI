@@ -5,9 +5,10 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useAppSelector } from "@/redux/hooks";
 import WaterIntakeCup from "@/components/WaterIntakeCup";
 import { MATERIAL_ICON_CUPS } from "@/constants/data";
+import { RootState } from "@/redux/store";
 
 export default function Tab() {
-  const attributes = useAppSelector((state) => state.attributes);
+  const attributes = useAppSelector((state: RootState) => state.attributes);
   const goal = calculateWaterIntake(
     attributes.weight,
     "kg",
@@ -22,7 +23,7 @@ export default function Tab() {
       <SafeAreaView className="flex justify-center items-center">
         <ScrollView contentContainerStyle={{ padding: 16 }}>
           <View className="justify-center items-center p-6">
-            <Text className="text-white text-2xl font-bold">Tab Home</Text>
+            <Text className="text-3xl font-bold text-white mb-4">Tab Home</Text>
             <WaterIntakeDial intake={currentIntake} goal={goal} />
           </View>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>

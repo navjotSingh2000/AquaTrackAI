@@ -1,11 +1,4 @@
-import {
-  View,
-  Text,
-  TextInput,
-  Button,
-  ScrollView,
-  Platform,
-} from "react-native";
+import { View, Text, TextInput, ScrollView, Platform } from "react-native";
 import Checkbox from "expo-checkbox";
 import { Picker } from "@react-native-picker/picker";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
@@ -13,10 +6,11 @@ import { setAttribute } from "@/redux/attributesSlice";
 import { Attributes } from "@/types/attributes";
 import { EXERCISE_TIMES } from "@/constants/data";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { RootState } from "@/redux/store";
 
 export default function Tab() {
   const dispatch = useAppDispatch();
-  const attributes = useAppSelector((state) => state.attributes);
+  const attributes = useAppSelector((state: RootState) => state.attributes);
 
   function onAttributeChange<T extends keyof Attributes>(
     value: Attributes[T],
