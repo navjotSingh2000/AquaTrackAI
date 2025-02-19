@@ -23,7 +23,7 @@ export default function Tab() {
       <SafeAreaView className="flex justify-center items-center">
         <ScrollView contentContainerStyle={{ padding: 16 }}>
           <View className="justify-center items-center p-6">
-            <Text className="text-white text-2xl font-bold">Tab Home</Text>
+            <Text className="text-3xl font-bold text-white mb-4">Tab Home</Text>
             <WaterIntakeDial intake={currentIntake} goal={goal} />
           </View>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
