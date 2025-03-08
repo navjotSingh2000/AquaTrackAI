@@ -2,13 +2,36 @@ import WaterIntakeDial from "@/components/WaterIntakeDial";
 import { calculateWaterIntake } from "@/utils/helpers";
 import { View, Text, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useAppSelector } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import WaterIntakeCup from "@/components/WaterIntakeCup";
 import { MATERIAL_ICON_CUPS } from "@/constants/data";
 import { RootState } from "@/redux/store";
+import { useEffect, useState } from "react";
+import { logIntake, resetIntake } from "@/redux/logIntakeSlice";
+import moment from "moment";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Tab() {
+  const dispatch = useAppDispatch();
   const attributes = useAppSelector((state: RootState) => state.attributes);
+  const currentIntake = useAppSelector(
+    (state: RootState) => state.logIntake.currentIntake
+  );
+
+  useEffect(() => {
+    const checkAndResetIntake = async () => {
+      const today = moment().format("YYYY-MM-DD");
+      const lastResetDate = await AsyncStorage.getItem("lastResetDate");
+
+      if (lastResetDate !== today) {
+        dispatch(resetIntake());
+        await AsyncStorage.setItem("lastResetDate", today);
+      }
+    };
+
+    checkAndResetIntake();
+  }, [dispatch]);
+
   const goal = calculateWaterIntake(
     attributes.weight,
     "kg",
@@ -16,7 +39,12 @@ export default function Tab() {
     attributes.hotWeather,
     attributes.highSodiumOrProteinDiet
   );
-  const currentIntake = 1.5;
+
+  function handleLogIntake(cupCapacity: number) {
+    const potentialIntake = currentIntake + cupCapacity;
+    const newIntake = potentialIntake > goal ? goal : potentialIntake;
+    dispatch(logIntake({ key: "currentIntake", value: newIntake }));
+  }
 
   return (
     <View className="flex-1 bg-gray-900">
@@ -35,7 +63,7 @@ export default function Tab() {
                     icon={cup.name}
                     label={cup.label}
                     capacity={cup.capacity}
-                    onPress={() => console.log("Pressed")}
+                    onPress={() => handleLogIntake(cup.capacity)}
                   />
                 );
               })}

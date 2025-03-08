@@ -5,6 +5,7 @@ import moment from "moment";
 const initialState: LogIntakeProps = {
   datetime: moment().format("YYYY-MM-DD HH:mm:ss"),
   waterIntake: 0,
+  currentIntake: 0,
 };
 
 const logIntakeSlice = createSlice({
@@ -17,8 +18,11 @@ const logIntakeSlice = createSlice({
     ) => {
       state[action.payload.key] = action.payload.value;
     },
+    resetIntake: (state) => {
+      state.currentIntake = 0;
+    },
   },
 });
 
-export const { logIntake } = logIntakeSlice.actions;
+export const { logIntake, resetIntake } = logIntakeSlice.actions;
 export default logIntakeSlice.reducer;
